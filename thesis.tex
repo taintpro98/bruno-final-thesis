@@ -1,0 +1,328 @@
+\documentclass[a4paper, 13pt, oneside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{comment}
+\usepackage[export]{adjustbox}
+\usepackage[utf8]{vietnam}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{fancybox}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{subfiles}
+\usepackage[left=3.50cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{changepage}
+\usepackage{framed}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{tabu}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{placeins}
+\usepackage{multirow}
+\usepackage{setspace}
+% \usepackage[backend=biber, sorting=none]{biblatex}
+\usepackage{listings}
+\usepackage[nottoc]{tocbibind}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{float}
+\floatstyle{plaintop}
+\restylefloat{table}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[english]{babel}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage[acronym, nonumberlist, shortcuts, toc]{glossaries}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{algorithmic}
+\SetAlFnt{\footnotesize}
+\SetKw{KwDownTo}{downto}
+\SetKw{KwTrue}{true}
+\SetKw{KwFalse}{false}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKw{KwAnd}{and}
+\makeatletter
+\newcommand{\nosemic}{\renewcommand{\@endalgocfline}{\relax}}
+\newcommand{\dosemic}{\renewcommand{\@endalgocfline}{\algocf@endline}}
+\newcommand{\pushline}{\Indp}
+\newcommand{\popline}{\Indm\dosemic}
+\let\oldnl\nl
+\newcommand{\nonl}{\renewcommand{\nl}{\let\nl\oldnl}}
+\makeatother
+
+\addto\captionsenglish{%
+	\renewcommand\chaptername{Chương}
+	\renewcommand{\contentsname}{Mục lục} 
+	\renewcommand{\listtablename}{Danh sách bảng}
+	\renewcommand{\listfigurename}{Danh sách hình vẽ}
+	\renewcommand{\tablename}{Bảng}
+	\renewcommand{\figurename}{Hình}
+    \renewcommand{\nomname}{Danh sách từ viết tắt}
+	\renewcommand{\bibname}{Tài liệu tham khảo}
+}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\lstset{
+    language=Python,
+    numbers=left,
+    numberstyle=\small,
+    frame=single,
+    tabsize=2,
+    breaklines=true,
+    basicstyle=\ttfamily\small,
+    captionpos=b,
+    stringstyle=\color{magenta},
+    keywordstyle=\color{blue}\bfseries,
+    numberstyle=\color{black}
+}
+\setlength{\parskip}{0.6em}
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{4}}
+\newcommand{\Vast}{\bBigg@{5}}
+\newcommand{\vastl}{\mathopen\vast}
+\newcommand{\vastm}{\mathrel\vast}
+\newcommand{\vastr}{\mathclose\vast}
+\newcommand{\Vastl}{\mathopen\Vast}
+\newcommand{\Vastm}{\mathrel\Vast}
+\newcommand{\Vastr}{\mathclose\Vast}
+\makeatother
+
+\renewcommand{\footrulewidth}{0.4pt}
+\newcommand{\bigCI}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+\renewcommand{\baselinestretch}{1.2}
+
+% \setcounter{page}{3}
+\graphicspath{ {images/} }
+\lhead{}
+\chead{}
+\rhead{}
+
+\makeglossaries
+\loadglsentries[\acronymtype]{acronyms}
+\loadglsentries{glossary}
+
+% \setlength{\parindent}{1.25cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
+\setlength{\columnsep}{0.5125cm}
+\renewcommand{\baselinestretch}{1.2}
+
+\fancypagestyle{IHA-fancy-style}{%
+  \fancyhf{}% Clear header and footer
+  \fancyhead[L]{\textit{Đồ án này được trình bày bởi: Nguyễn Tiến Tài - 20164837 - KSTN.CNTT - K61}}
+  \fancyfoot[R]{\thepage}% Custom footer
+  \renewcommand{\headrulewidth}{0.4pt}% Line at the header visible
+  \renewcommand{\footrulewidth}{0pt}% Line at the footer visible
+}
+% Redefine the plain page style
+\fancypagestyle{plain}{%
+  \fancyhf{}% Clear header and footer
+  \fancyhead[L]{\textit{Đồ án này được trình bày bởi: Nguyễn Tiến Tài - 20164837 - KSTN.CNTT - K61}}
+  \fancyfoot[R]{\thepage}% Custom footer
+  \renewcommand{\headrulewidth}{0.4pt}% Line at the header visible
+  \renewcommand{\footrulewidth}{0pt}% Line at the footer visible
+}
+\pagestyle{IHA-fancy-style}
+
+\begin{document}
+% \begin{spacing}{1.25}
+%     \thispagestyle{empty}
+%     \thisfancypage{\setlength{\fboxrule}{1pt}\doublebox}{}
+%     \begin{center}
+%         {\fontsize{17}{20}\selectfont TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI} \\
+%         {\fontsize{13}{17}\selectfont VIỆN CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG} \\ [0.25cm]
+%         \textbf{---------------*---------------} \\ [1cm]
+%         \includegraphics[width=0.2\textwidth]{hust.jpeg} \\ [1cm]
+%         {\fontsize{25}{30}\selectfont \textbf{ĐỒ ÁN TỐT NGHIỆP}} \\ [0.25cm]
+%         {\fontsize{14}{17}\selectfont NGÀNH CÔNG NGHỆ THÔNG TIN} \\ [0.5cm]
+%         {\fontsize{15}{15}\selectfont \textbf{Kỹ thuật thích ứng miền dữ liệu trong bài toán phân vùng ngữ nghĩa ảnh đường phố ứng dụng cho xe tự lái}}
+%         \\ [2.25cm]
+%         \begin{tabular}{ l l }
+%             Sinh viên thực hiện & : \textbf{Nguyễn Tiến Tài} \\
+%             Lớp & : KSTN.CNTT K61 \\
+%             Mã số sinh viên & : 20164837 \\ [0.5cm]
+%             Giảng viên hướng dẫn & : TS. \textbf{Đinh Viết Sang}
+%         \end{tabular} \\ [2.25cm]
+%         \\[4cm]
+%         {\fontsize{17}{20}\selectfont Hà Nội, 5 - 2021}
+%     \end{center}
+% \end{spacing}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+
+{
+. \\
+{\fontsize{15}{20}\fontfamily{cmr}\selectfont \textbf{TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI}}\\
+{\fontsize{13}{18}\fontfamily{cmr}\selectfont \textbf{VIỆN CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG}\\[1cm]}
+	\includegraphics[scale=0.3]{images/hust.jpeg} \\[1.2cm]
+\centering
+
+{\fontsize{22}{20}\fontfamily{cmr}\selectfont \textbf{ĐỒ ÁN TỐT NGHIỆP}}\\\\[0.3cm]
+{\fontsize{15}{16}\fontfamily{cmr}\selectfont \textbf{KỸ THUẬT THÍCH ỨNG MIỀN DỮ LIỆU TRONG BÀI TOÁN PHÂN VÙNG NGỮ NGHĨA ẢNH ĐƯỜNG PHỐ ỨNG DỤNG CHO XE TỰ LÁI}}\\[1cm]
+
+\begin{tabular}{l c l}
+ & {\fontsize{13}{9}\fontfamily{cmr}\selectfont \textbf{NGUYỄN TIẾN TÀI}} & \\
+ & {\fontsize{13}{9}\fontfamily{cmr}\selectfont tai.nt164837@sis.hust.edu.vn} & \\
+& {\fontsize{13}{9}\fontfamily{cmr}\selectfont \textbf{Ngành: Công nghệ thông tin}} &\\
+& {\fontsize{13}{9}\fontfamily{cmr}\selectfont \textbf{Chương trình Kỹ sư Tài năng Công nghệ Thông tin}} &\\
+\end{tabular} \\[3cm]
+
+\fontsize{11}{8}\fontfamily{cmr}\selectfont 
+\begin{tabular}{l l l}
+  \textbf{Giảng viên hướng dẫn} &: &  TS. Đinh Viết Sang  
+  \hspace{2cm} \underline{\hspace{5cm}} \\
+  &&\multicolumn{1}{r}{Chữ ký của GVHD} \\
+  \textbf{Bộ môn} &: & Khoa học máy tính  \\ 
+  \textbf{Viện} &: & Công nghệ thông tin và Truyền thông  \\
+\end{tabular} \\[1.5cm]
+}
+\fontsize{15}{19}\fontfamily{cmr}\selectfont 
+\\[3cm]
+\textbf{Hà Nội, 06/2021}
+\end{center}
+\pagebreak
+\end{titlepage}
+% \pagebreak
+
+\selectlanguage{english}
+\fontsize {13pt}{16pt}
+\selectfont
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+\begin{spacing}{1.0}
+    \fontsize{12}{12} \chapter*{ Phiếu giao nhiệm vụ đồ án tốt nghiệp}
+    \section*{Thông tin sinh viên}
+    \begin{itemize}
+        \begin{multicols}{2}
+        \item \textbf{Họ và tên:} Nguyễn Tiến Tài 
+        \item \textbf{Lớp:} KSTN.CNTT K61
+        \item \textbf{Số điện thoại:} 0941439925
+        \item \textbf{Email:} tai.nt164837@sis.hust.edu.vn
+        \item \textbf{Hệ đào tạo:} Chương trình Kỹ sư tài năng Công nghệ thông tin
+        \end{multicols}
+        \item \textbf{Đồ án này được viết tại:} Trường Đại học Bách Khoa Hà Nội 
+        \item \textbf{Đồ án này được viết từ:} 22/01/2021 
+        % \textbf{to} 27/05/2019
+    \end{itemize}
+    \section*{Mục đích nội dung của đồ án tốt nghiệp}
+        \begin{itemize}
+        \item Thiết kế và cài đặt thuật toán thích ứng miền phân vùng ảnh ngữ nghĩa cho xe tự lái nhận diện ảnh đường phố.
+        \item Sử dụng các giải thuật phù hợp, cải tiến và đánh giá hiệu năng.
+        \end{itemize}
+    \section*{Các nhiệm vụ cụ thể của đồ án tốt nghiệp}
+        \begin{itemize}
+        \item Nghiên cứu các cấu trúc mạng phân vùng ảnh ngữ nghĩa dựa trên mạng nơ-ron tích chập.
+        \item Nghiên cứu các kỹ thuật thích ứng miền cho dữ liệu ảnh đường phố.
+        \item Cài đặt một framework có thể thay đổi và thử nghiệm các cấu trúc khác nhau một cách dễ dàng.
+        \item So sánh đánh giá kết quả trên tập dữ liệu Cityscapes.
+        \item Kết luận và lên kế hoạch phát triển trong tương lai.
+        \end{itemize}
+    
+    \section*{Lời cam đoan của sinh viên}
+    I - Nguyễn Tiến Tài - tất cả các kết quả và cài đặt được trình bày là công sức nghiên cứu dưới sự hướng dẫn của \textit{TS. Đinh Viết Sang}.\\\\
+    
+    \begin{minipage}{0.5\textwidth}
+        \hfill
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{center}
+        \textit{Hà Nội, 18 tháng Sáu, 2021\\Tác giả\\[2.5cm]Nguyễn Tiến Tài}
+        \end{center}
+    \end{minipage}
+    \subsection*{Chứng nhận của giảng viên hướng dẫn về việc hoàn thành các yêu cầu đối với đồ án:}
+    \dotfill\\.\dotfill\\.\dotfill\\.\dotfill\\\\
+    \begin{minipage}{0.5\textwidth}
+        \hfill
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{center}
+    \textit{Hà Nội, 18 tháng Sáu, 2021\\Giảng viên hướng dẫn\\[2.5cm]TS. Đinh Viết Sang}
+        \end{center}
+    \end{minipage}
+\end{spacing}
+
+\chapter*{Lời cảm ơn}
+Đồ án này sẽ không thể hoàn thành nếu không có giảng viên hướng dẫn của tôi, Tiến sỹ Đinh Viết Sang. Thầy đã hướng dẫn tôi không chỉ bằng những lời khuyên và hiểu biết sâu sắc, mà còn bởi sự quyết tâm và niềm đam mê. Tôi đã học được rất nhiều sau khi hoàn thành đồ án này, và tôi tự hào khi là một trong những sinh viên của thầy.
+
+Tôi cũng xin được gửi lời cảm ơn chân thành tới các thầy cô của tôi tại Đại học Bách Khoa Hà Nội, những người đã dạy cho tôi những kiến thức bổ ích trong suốt 5 năm qua khi tôi là một sinh viên trên giảng đường.
+
+Xin gửi lời cảm ơn tới các đồng nghiệp và thầy cô ở VINIF, những người đã đóng góp thời gian, kiến thức và kinh nghiệm để giúp tôi hoàn thành đồ án này.
+
+Cuối cùng, tôi cũng muốn gửi lời cảm ơn đến gia đình, bạn bè và những người tôi yêu quý, những người đã hỗ trợ và cho tôi niềm cảm hứng trong suốt 4 tháng qua. Tôi cảm thấy thật may mắn khi có những người tuyệt vời như vậy bên cạnh mình.
+
+\pagebreak
+
+\chapter*{Tóm tắt đồ án}
+Những năm gần đây, cùng với sự gia tăng dữ liệu và sự phát triển của trí tuệ nhân tạo, đã có rất nhiều đột phá mạnh mẽ trong lĩnh vực thị giác máy tính và được áp dụng vào rất nhiều bài toán thực tế. Huấn luyện các mạng học sâu một cách hiệu quả là một chủ đề rất được quan tâm, đóng vai trò quan trọng trong việc thử nghiệm cũng như ứng dụng. Trong số đó, việc áp dụng các kết quả vào cho xe tự lái là một trong những ứng dụng có tính thực tiễn nhất đối với thế giới ngày càng số hoá như hiện nay. Đồ án này tập trung nghiên cứu và áp dụng các giải pháp nhằm tăng khả năng phân vùng vật thể của mô hình cho xe tự lái.
+
+Nội dung đồ án được chia thành 5 chương như sau:
+\begin{itemize}
+    \item Chương 1: Tổng quan bài toán và đặt vấn đề.
+    \item Chương 2: Cơ sở lý thuyết và các nghiên cứu liên quan.
+    \item Chương 3: Phương pháp sử dụng
+    \item Chương 4: Thử nghiệm và đánh giá.
+    \item Chương 5: Kết luận và hướng phát triển
+\end{itemize}
+
+\pagebreak
+\pagenumbering{gobble}
+\tableofcontents
+\pagebreak
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\listoffigures
+\listoftables
+
+% \addcontentsline{toc}{chapter}{List of Abbreviations}
+\printglossary[type=\acronymtype,style=long, title=Danh mục từ viết tắt]
+% \addcontentsline{toc}{chapter}{Glossary}
+\printglossary
+\pagebreak
+
+\subfile{problem.tex}
+\subfile{theory.tex}
+\pagebreak
+\subfile{propose.tex}
+\subfile{results.tex}
+
+\chapter{Kết luận và hướng phát triển}
+Sự phát triển nghiên cứu về công nghệ cho xe tự lái là một xu hướng trong tương lai gần.
+Các lĩnh vực nghiên cứu thị giác máy tính ngày càng đóng vai trò quan trọng hơn. Do đó, chúng nhận được sự quan tâm lớn từ cộng đồng khoa học nói chung và nghiên cứu trí tuệ nhân tạo nói riêng. 
+
+Đồ án này đã trình bày tương đối đầy đủ về bài toán thích ứng miền trong phân vùng ảnh ngữ nghĩa. Tác giả đã trình bày các khái niệm chính cũng như cách thực hiện các bài toán con, bao gồm:
+\begin{itemize}
+    \item Bài toán phân vùng ảnh ngữ nghĩa
+    \item Bài toán thích ứng miền 
+    \item Bài toán học tự chắt lọc 
+\end{itemize}
+
+Tác giả cũng đã trình bày cách giải quyết đối với từng bài toán, cũng như thử nghiệm các phương pháp cải tiến, tối ưu. Ngoài ra, tác giả cũng đưa ra ưu nhược điểm của từng thuật toán. Do thời gian nghiên cứu có hạn, bài báo cáo có thể còn có sai sót, tác giả mong nhận được các góp ý để bài báo cáo được tốt hơn.
+
+Trong thực tế, ta cần cân bằng giữa cả độ chính xác và mức độ đa dạng mà mô hình có thể nhận biết được. Cho nên, đồ án đã xây dựng một mô hình cơ sở, từ đó có thể dễ dàng thử nghiệm thêm các mô đun phân vùng ảnh ngữ nghĩa, các kỹ thuật thích ứng miền khác nhau và các tổ hợp của chúng.  Trong tương lai, tác giả sẽ thử nghiệm thêm các kỹ thuật thích ứng miền mạnh mẽ hơn như IAST và các kiến trúc nổi bật như Transformer trên bộ dữ liệu được mô phỏng từ đồ hoạ máy tính với các kiểu môi trường đa dạng.
+
+\pagebreak
+\bibliographystyle{plain}
+\bibliography{thesis}
+\end{document}
